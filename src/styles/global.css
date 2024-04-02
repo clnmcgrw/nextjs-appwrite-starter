@@ -1,0 +1,80 @@
+/* Custom global styles */
+
+:root {
+  --app-header-height: 3.8rem;
+  --app-footer-height: 3.5rem;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+}
+
+main {
+  box-sizing: border-box;
+  padding-top: var(--app-header-height);
+  min-height: calc(100vh - var(--app-footer-height));
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+fieldset {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 100%;
+}
+
+
+/* Radix Theme overrides */
+
+/* :root { 
+  --color-page-background: var(--gray-2) !important;
+}
+body {
+  background-color: var(--color-page-background);
+} */
+
+.radix-themes {
+  --default-font-family: #{$font-family-body};
+  --heading-font-family: #{$font-family-heading};
+
+  --font-weight-bold: 800;
+  --font-weight-medium: 600;
+  --font-weight-regular: 500;
+  --font-weight-light: 400;
+
+  --line-height-1: calc(16px* var(--scaling));
+  --line-height-2: calc(20px* var(--scaling));
+  --line-height-3: calc(24px* var(--scaling));
+  --line-height-4: calc(26px* var(--scaling));
+  --line-height-5: calc(28px* var(--scaling));
+  --line-height-6: calc(30px* var(--scaling));
+  --line-height-7: calc(36px* var(--scaling));
+  --line-height-8: calc(40px* var(--scaling));
+  --line-height-9: calc(60px* var(--scaling));
+
+  --cursor-button: pointer;
+  --cursor-checkbox: pointer;
+  --cursor-disabled: not-allowed;
+  --cursor-link: pointer;
+  --cursor-menu-item: pointer;
+  --cursor-radio: pointer;
+  --cursor-slider-thumb: pointer;
+  --cursor-slider-thumb-active: grabbing;
+  --cursor-switch: pointer;
+}
+
+.radix-themes .rt-Button:where(:not(.rt-variant-ghost)) {
+  font-weight: var(--font-weight-bold);
+}

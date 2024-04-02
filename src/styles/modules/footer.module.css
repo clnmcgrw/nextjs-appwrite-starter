@@ -1,0 +1,9 @@
+
+.footer {
+  height: 3.5rem;
+  padding: 0 var(--space-4);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,36 @@
+
+.dropzone {
+  position: relative;
+  border: 1px solid var(--gray-4);
+  background-color: var(--gray-1);
+  border-radius: max(var(--radius-3), var(--radius-full));
+}
+
+.label {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.content {
+  padding: 0 var(--space-4);
+}
+
+.icon {
+  color: var(--accent-8);
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.preview {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+

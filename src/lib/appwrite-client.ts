@@ -11,7 +11,10 @@ client
 
 export const account: Account = new Account(client);
 
-account.updateRecovery = async (
+// Shim'd account recovery
+// see - https://github.com/appwrite/sdk-for-web/issues/92
+// @ts-ignore
+account.updateRecovery = (
   userId: string,
   secret: string,
   password: string,
@@ -38,7 +41,7 @@ account.updateRecovery = async (
   }
 
   const uri = new URL(client.config.endpoint + apiPath);
-  return await client.call('put', uri, {
+  return client.call('put', uri, {
       'content-type': 'application/json',
   }, payload);
 };

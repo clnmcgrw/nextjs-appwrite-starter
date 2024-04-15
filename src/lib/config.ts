@@ -14,4 +14,6 @@ const APP_ROOT_URL = {
 
 // Exports
 export const RECOVERY_REDIRECT = `${APP_ROOT_URL}/reset`;
+export const EMAIL_VERIFY_REDIRECT = `${APP_ROOT_URL}/dashboard`;
+
 export const SESSION_COOKIE_KEY = 'nas-session';

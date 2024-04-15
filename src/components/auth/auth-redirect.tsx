@@ -21,6 +21,16 @@ const Loading = () => (
   </Flex>
 );
 
+export const useRequireAuth = (to: string) => {
+  const { ready, getCurrentAuth, isLoggedIn } = useAuthStore();
+  if (ready && !isLoggedIn()) {
+    redirect(to);
+  }
+  useEffect(() => {
+    getCurrentAuth();
+  }, [getCurrentAuth]);
+};
+
 const AuthRedirect = ({
   to = '/dashboard',
   condition = true,
@@ -29,8 +39,7 @@ const AuthRedirect = ({
 }: AuthGaurdProps) => {
   const { ready, getCurrentAuth, isLoggedIn } = useAuthStore();
 
-  if (isLoggedIn() === condition && !logout) {
-    console.log('auth redirect...');
+  if (ready && isLoggedIn() === condition && !logout) {
     redirect(to);
   }
 

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { ID, account } from '@/lib/appwrite-client';
 import passwordStrength from '@/lib/utils/pw-strength';
-import { RECOVERY_REDIRECT } from '@/lib/config';
+import { RECOVERY_REDIRECT, EMAIL_VERIFY_REDIRECT } from '@/lib/config';
 import * as i18n from '@/lib/i18n';
 import { type Models } from 'appwrite';
 
@@ -9,6 +9,7 @@ type AuthErrors = {
   login?: string | false
   signup?: string | false
   recovery?: string | false
+  verify?: string | false
 }
 
 type UserPrefs = any // todo - update once using this feature
@@ -118,8 +119,22 @@ export const useAuthStore = create<AuthStore>((set, get) => {
     }
   };
 
+  const verifyEmail = async () => {
+    try {
+      await account.createVerification(EMAIL_VERIFY_REDIRECT);
+    } catch (e) {
+      set(store => ({ errors: { ...store.errors, verify: getAppwriteError(e) } }));
+    }
+  };
+
   // Recover password - get recovery link via email
   const createRecovery = async (email: string) => {
+    if (!email) {
+      set(store => ({
+        errors: { ...store.errors, recovery: authErrors.missing },
+      }));
+      return;
+    }
     set(store => ({
       loading: true,
       errors: { ...store.errors, recovery: false },
@@ -194,11 +209,13 @@ export const useAuthStore = create<AuthStore>((set, get) => {
     ready: false,
     loading: false,
     recovering: false,
-    logInViaEmail,
-    signUpViaEmail,
+    
     getAccount,
     getSession,
     getCurrentAuth,
+    logInViaEmail,
+    signUpViaEmail,
+    verifyEmail,
     createRecovery,
     confirmRecovery,
     logOut,

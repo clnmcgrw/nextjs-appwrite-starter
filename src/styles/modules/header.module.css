@@ -1,6 +1,7 @@
 
 .header {
   box-sizing: border-box;
+  min-width: var(--app-min-width);
   position: fixed;
   top: 0;
   left: 0;
